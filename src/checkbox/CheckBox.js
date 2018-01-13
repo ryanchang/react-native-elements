@@ -7,12 +7,12 @@ import {
   Platform,
   Text as NativeText,
 } from 'react-native';
-import TextElement from '../text/Text';
 import fonts from '../config/fonts';
 import colors from '../config/colors';
 import FAIcon from 'react-native-vector-icons/FontAwesome';
 import getIconType from '../helpers/getIconType';
 import ViewPropTypes from '../config/ViewPropTypes';
+import HTMLView from 'react-native-htmlview';
 
 const CheckBox = props => {
   const {
@@ -23,7 +23,6 @@ const CheckBox = props => {
     center,
     right,
     containerStyle,
-    textStyle,
     onPress,
     onLongPress,
     onIconPress,
@@ -34,8 +33,6 @@ const CheckBox = props => {
     iconType,
     checkedColor,
     uncheckedColor,
-    checkedTitle,
-    fontFamily,
     ...attributes
   } = props;
 
@@ -62,35 +59,27 @@ const CheckBox = props => {
           center && { justifyContent: 'center' },
         ]}
       >
-        {!iconRight &&
+        {!iconRight && (
           <Icon
             color={checked ? checkedColor : uncheckedColor}
             name={iconName}
             size={size || 24}
             onLongPress={onLongIconPress}
             onPress={onIconPress}
-          />}
+          />
+        )}
 
-        {React.isValidElement(title)
-          ? title
-          : <TextElement
-              style={[
-                styles.text,
-                textStyle && textStyle,
-                fontFamily && { fontFamily },
-              ]}
-            >
-              {checked ? checkedTitle || title : title}
-            </TextElement>}
+        <HTMLView value={title} />
 
-        {iconRight &&
+        {iconRight && (
           <Icon
             color={checked ? checkedColor : uncheckedColor}
             name={iconName}
             size={size || 24}
             onLongPress={onLongIconPress}
             onPress={onIconPress}
-          />}
+          />
+        )}
       </View>
     </Component>
   );
