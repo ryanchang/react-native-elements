@@ -12,7 +12,7 @@ import colors from '../config/colors';
 import FAIcon from 'react-native-vector-icons/FontAwesome';
 import getIconType from '../helpers/getIconType';
 import ViewPropTypes from '../config/ViewPropTypes';
-import HTMLView from 'react-native-htmlview';
+import HTML from 'react-native-render-html';
 
 const CheckBox = props => {
   const {
@@ -69,7 +69,7 @@ const CheckBox = props => {
           />
         )}
 
-        <HTMLView value={title} />
+        <HTML html={title} />
 
         {iconRight && (
           <Icon
